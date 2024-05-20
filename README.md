@@ -87,6 +87,9 @@ In this example, the client has programmatically requested the interaction data 
 ## Notes for Developers
 
 - Ensure that the server script `server.py` is running before sending requests from the client.
-- The drug names used in the request should match the names used on the website "https://www.drugs.com/" to ensure accurate results.
-- The server and client scripts provided are basic implementations. For a production environment, consider implementing security features, error handling, and logging.
-- For the sake of this example, the microservice does not cache responses. Implementing caching could improve performance by reducing the number of requests to the external website and providing faster responses to the client.
+- The drug names used in the request should be in lowercase and match the names used on the website "https://www.drugs.com/" to ensure accurate results.
+
+## UML Sequence Diagram
+
+![IMG_707297BC48D4-1](https://github.com/tranlex/drug-interaction-microservice/assets/129806187/926c02ee-cf76-417a-a7c8-39fea51627aa)
+
