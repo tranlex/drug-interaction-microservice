@@ -20,6 +20,7 @@ def get_drug_interaction_data(drug_name):
 
     return drug_names
 
+
 # Function to query food interaction data
 def get_food_interaction_data(drug_name):
     url = f"https://www.drugs.com/food-interactions/{drug_name}.html"
@@ -31,7 +32,12 @@ def get_food_interaction_data(drug_name):
     if food_section:
         for p in food_section.find_all('p'):
             if "food" in p.text.lower():
-                food_interaction += p.text + "\n"
+                if "alcohol" not in p.text.lower() and "lifestyle" not in p.text.lower():
+                    food_interaction += p.text + "\n"
+
+    # Check if there are any food interactions, return "No food interactions with the drug" if empty
+    if not food_interaction:
+        return f"No food interactions with {drug_name}."
 
     return food_interaction
 
@@ -46,7 +52,7 @@ while True:
     drug_food_interactions = get_food_interaction_data(drug_name)
 
     # Combine drug interactions and food interactions into a single list
-    result_list = [f"General interactions for {drug_name}:\n{interaction_data}", f"Food interactions for {drug_name}:\n{drug_food_interactions}"]
+    result_list = [f"Medication interactions for {drug_name}:\n{interaction_data}", f"Food interactions for {drug_name}:\n{drug_food_interactions}"]
 
     # Prepare the response message by joining the list elements
     response_message = '\n\n'.join(result_list)
